@@ -45,44 +45,51 @@ foreach ($postData as $key => $value) {
 ?>
     </head>
     <body>
-        <h1>Thank you<?php if ($postData['name'] != "") { echo ", " . $postData['name'] . ","; } ?> for using our deposit calculator!</h1>
-        <?php if (!empty($error)) : ?>
-            <div class="div-error">
-                <p>However, we can not process your request because of the following input errors:</p>
-                <ul>
-                    <?php foreach ($error as $err) : ?>
-                        <li><?php echo $err; ?></li>
-                    <?php endforeach; ?>
-                </ul>
+        <div class="container">
+            <h1>Thank you<?php if ($postData['name'] != "") { echo ", " . $postData['name'] . ","; } ?> for using our deposit calculator!</h1>
+            <?php if (!empty($error)) : ?>
+                <div class="div-error">
+                    <p>However, we cannot process your request because of the following input errors:</p>
+                    <ul>
+                        <?php foreach ($error as $err) : ?>
+                            <li><?php echo $err; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+            <?php if (empty($error)) : ?>
+                <div class="div-success">
+                    <?php if ($postData['contactMethod'] === "phone") : ?>
+                        <p>Our customer service department will call you tomorrow <?php for ($i = 0; $i < count($phoneTime); $i++) { if ($i < count($phoneTime) - 1) { echo $phoneTime[$i] . " or "; continue; } echo $phoneTime[$i]; } ?> at <?php echo $postData['phoneNumber']; ?>.</p>
+                    <?php endif; ?>
+                    <?php if ($postData['contactMethod'] === "email") : ?>
+                        <p>Our customer service department will email you tomorrow at <?php echo $postData['emailAddress']; ?>.</p>
+                    <?php endif; ?>
+                    <br />
+                    <p>The following is the result of the calculation:</p>
+                    <table id="tblResult" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Principal at Year Start</th>
+                                <th>Interest for the Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            $amount = $postData['principalAmount'];
+                            ?>
+                            <?php for ($i = 1; $i <= $postData['depositYears']; $i++) : ?>
+                            <tr>
+                                <td><?php echo $i; ?></td>
+                                <td><?php printf("\$%.2f", $amount); ?></td>
+                                <td><?php $interest = $amount * $postData['interestRate'] / 100; $amount += $interest; printf("\$%.2f", $interest); ?></td>
+                            </tr>
+                            <?php endfor; ?>
+                        </tbody>
+                    </table>
             </div>
-        <?php endif; ?>
-        <?php if (empty($error)) : ?>
-            <div class="div-success">
-                <p>Our customer service department will call you tomorrow <?php for ($i = 0; $i < count($phoneTime); $i++) { if ($i < count($phoneTime) - 1) { echo $phoneTime[$i] . " or "; continue; } echo $phoneTime[$i]; } ?> at <?php echo $postData['phoneNumber']; ?>.</p>
-                <br />
-                <p>The following is the result of the calculation:</p>
-                <table id="tblResult">
-                    <thead>
-                        <tr>
-                            <th>Year</th>
-                            <th>Principal at Year Start</th>
-                            <th>Interest for the Year</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                        $amount = $postData['principalAmount'];
-                        ?>
-                        <?php for ($i = 1; $i <= $postData['depositYears']; $i++) : ?>
-                        <tr>
-                            <td><?php echo $i; ?></td>
-                            <td><?php printf("\$%.2f", $amount); ?></td>
-                            <td><?php $interest = $amount * $postData['interestRate'] / 100; $amount += $interest; printf("\$%.2f", $interest); ?></td>
-                        </tr>
-                        <?php endfor; ?>
-                    </tbody>
-                </table>
-           </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </body>
 </html>
