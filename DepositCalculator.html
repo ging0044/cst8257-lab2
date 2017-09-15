@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Deposit Calculator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="DepositCalculator.php" name="depositCalculator" method="post">
+            <h1>Deposit Calculator</h1>
+            <fieldset name="moneyInfo">
+                <label for="principalAmount">Principal Amount:</label>
+                <input type="text" name="principalAmount" id="principalAmount" />
+                <label for="interestRate">Interest Rate (%):</label>
+                <input type="text" name="interestRate" id="interestRate" />
+                <label for="depositYears">Years to Deposit:</label>
+                <input type="number" name="depositYears" id="depositYears" />
+            </fieldset>
+            <fieldset name="userInfo">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" />
+                <label for="postalCode">Postal Code:</label>
+                <input type="text" name="postalCode" id="postalCode" />
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" />
+                <label for="emailAddress">Email Address:</label>
+                <input type="text" name="emailAddress" id="emailAddress" />
+            </fieldset>
+            <fieldset name="contactInfo">
+                <label>Preferred Contact Method:</label>
+                <input type="radio" name="contactMethod" id="radioPhone" value="phone">
+                <label for="radioPhone">Phone</label>
+                <input type="radio" name="contactMethod" id="radioEmail" value="email">
+                <label for="radioPhone">Email</label>
+                <label>If phone is selected, when can we contact you? (Check all applicable)</label>
+                <input type="checkbox" name="phoneTime[]" value="morning" id="checkMorning">
+                <label for="checkMorning">Morning</label>
+                <input type="checkbox" name="phoneTime[]" value="afternoon" id="checkAfternoon">
+                <label for="checkAfternoon">Afternoon</label>
+                <input type="checkbox" name="phoneTime[]" value="evening" id="checkEvening">
+                <label for="checkEvening">Evening</label>
+            </fieldset>
+            <input type="submit" name="submit" id="submit" value="Calculate">
+            <input type="reset" name="reset" id="reset" value="Clear">
+        </form>
+    </body>
+</html>
