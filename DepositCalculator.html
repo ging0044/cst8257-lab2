@@ -5,48 +5,118 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>Deposit Calculator</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+
+<head>
+    <title>Deposit Calculator</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Deposit Calculator</h1>
         <form action="DepositCalculator.php" name="depositCalculator" method="post">
-            <h1>Deposit Calculator</h1>
-            <fieldset name="moneyInfo">
-                <label for="principalAmount">Principal Amount:</label>
-                <input type="text" name="principalAmount" id="principalAmount" />
-                <label for="interestRate">Interest Rate (%):</label>
-                <input type="text" name="interestRate" id="interestRate" />
-                <label for="depositYears">Years to Deposit:</label>
-                <input type="number" name="depositYears" id="depositYears" />
+            <div class="form-group row">
+                <label for="principalAmount" class="col-sm-3 col-form-label">Principal Amount:</label>
+                <div class="col-sm-9">
+                    <input type="text" name="principalAmount" id="principalAmount" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="interestRate" class="col-sm-3 col-form-label">Interest Rate (%):</label>
+                <div class="col-sm-9">
+                    <input type="text" name="interestRate" id="interestRate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="depositYears" class="col-sm-3 col-form-label">Years to Deposit:</label>
+                <div class="col-sm-9">
+                    <input type="number" name="depositYears" id="depositYears" class="form-control" />
+                </div>
+            </div>
+            <hr/>
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Name:</label>
+                <div class="col-sm-9">
+                    <input type="text" name="name" id="name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="postalCode" class="col-sm-3 col-form-label">Postal Code:</label>
+                <div class="col-sm-9">
+                    <input type="text" name="postalCode" id="postalCode" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phoneNumber" class="col-sm-3 col-form-label">Phone Number:
+                    <small id="passwordHelpBlock" class="form-text text-muted">(nnn-nnn-nnnn)</small>
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="emailAddress" class="col-sm-3 col-form-label">Email Address:</label>
+                <div class="col-sm-9">
+                    <input type="text" name="emailAddress" id="emailAddress" class="form-control" />
+                </div>
+            </div>
+            <hr/>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Preferred Contact Method:</label>
+                <div class="col-sm-9">
+                    <div class="form-check form-check-inline">
+                        <label for="radioPhone" class="form-check-label">
+                            <input type="radio" name="contactMethod" id="radioPhone" value="phone" class="form-check-input" />
+                            Phone
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label for="radioEmail" class="form-check-label">
+                            <input type="radio" name="contactMethod" id="radioEmail" value="email" class="form-check-input" />
+                            Email
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <fieldset class="form-group">
+                <div class="row">
+                    <label class="col-sm-3 col-form-label">If phone is selected, when can we contact you? (Check all applicable)</label>
+                    <div class="col-sm-9">
+                        <div class="form-check form-check-inline">
+                            <label for="checkMorning" class="form-check-label">
+                                <input type="checkbox" name="phoneTime[]" value="morning" id="checkMorning" class="form-check-input" />
+                                Morning
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label for="checkAfternoon" class="form-check-label">
+                                <input type="checkbox" name="phoneTime[]" value="afternoon" id="checkAfternoon"class="form-check-input" />
+                                Afternoon
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label for="checkEvening" class="form-check-label">
+                                <input type="checkbox" name="phoneTime[]" value="evening" id="checkEvening"class="form-check-input" />
+                                Evening
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </fieldset>
-            <fieldset name="userInfo">
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name" />
-                <label for="postalCode">Postal Code:</label>
-                <input type="text" name="postalCode" id="postalCode" />
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="text" name="phoneNumber" id="phoneNumber" />
-                <label for="emailAddress">Email Address:</label>
-                <input type="text" name="emailAddress" id="emailAddress" />
-            </fieldset>
-            <fieldset name="contactInfo">
-                <label>Preferred Contact Method:</label>
-                <input type="radio" name="contactMethod" id="radioPhone" value="phone">
-                <label for="radioPhone">Phone</label>
-                <input type="radio" name="contactMethod" id="radioEmail" value="email">
-                <label for="radioPhone">Email</label>
-                <label>If phone is selected, when can we contact you? (Check all applicable)</label>
-                <input type="checkbox" name="phoneTime[]" value="morning" id="checkMorning">
-                <label for="checkMorning">Morning</label>
-                <input type="checkbox" name="phoneTime[]" value="afternoon" id="checkAfternoon">
-                <label for="checkAfternoon">Afternoon</label>
-                <input type="checkbox" name="phoneTime[]" value="evening" id="checkEvening">
-                <label for="checkEvening">Evening</label>
-            </fieldset>
-            <input type="submit" name="submit" id="submit" value="Calculate">
-            <input type="reset" name="reset" id="reset" value="Clear">
+            <div class="form-group">
+                <input type="submit" name="submit" id="submit" value="Calculate" class="btn btn-primary">
+                <input type="reset" name="reset" id="reset" value="Clear" class="btn btn-primary">
+            </div>
         </form>
-    </body>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nsmS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
